@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- Specifies character encoding for the document -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive -->
+  <title>Menu | The Jade Stack</title> <!-- Page title -->
+  <link rel="stylesheet" href="Main.css"> <!-- Link to external CSS file -->
+</head>
+<body class="menu-page">
+
+  <!-- Header Section -->
+  <header>
+    <!-- Logo for the restaurant -->
+    <div class="logo">
+      <img src="jadestack_icon.jpg" alt="The Jade Stack Logo">
+    </div>
+    <!-- Navigation bar -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Menu</a></li> 
+        <li><a href="Location.html">Locations</a></li> 
+        <li><a href="Story.html">Our Story</a></li> 
+        <li><a href="ContactUs.html">Contact Us</a></li> 
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Menu Header Box -->
+  <div class="menu-header">
+    <h2>Our Menu</h2> <!-- Heading for the menu section -->
+  </div>
+
+  <!-- Main Content for Menu -->
+  <main id="menu">
+    <section class="menu-section">
+
+      <!-- Menu Selection Buttons -->
+      <div class="menu-tabs">
+        <!-- Button to show burger items -->
+        <button class="menu-tab" id="burgerTab">
+          <img src="burger_icon.png" alt="Burger Icon"> <!-- Icon for burgers -->
+        </button>
+        <!-- Button to show drink items -->
+        <button class="menu-tab" id="drinkTab">
+          <img src="drinks_icon.png" alt="Drink Icon"> <!-- Icon for drinks -->
+        </button>
+      </div>
+
+      <!-- Menu Title and Current Selection -->
+      <div class="menu-content">
+        <h3 id="currentMenuTitle">Burgers</h3> <!-- Displays the current menu category -->
+
+        <!-- Burger Items -->
+        <div class="menu-items" id="burgerItems">
+          <!-- First burger item -->
+          <div class="menu-item" data-description="Juicy beef patty with fresh lettuce and tomato.">
+            <img src="image 6.png" alt="Burger 1">
+            <div class="description">Angus Avalanche</div>
+          </div>
+          <!-- Second burger item -->
+          <div class="menu-item" data-description="Cheesy delight with extra cheddar.">
+            <img src="image 7.png" alt="Burger 2">
+            <div class="description">Cheese Deluxe</div>
+          </div>
+          <!-- Third burger item -->
+          <div class="menu-item" data-description="Zesty ranch with fresh lettuce and tomato and grilled chicken.">
+            <img src="image 8 (2).png" alt="Burger 3">
+            <div class="description">Zesty Ranch Roost</div>
+          </div>
+        </div>
+
+        <!-- Drink Items -->
+        <div class="menu-items" id="drinkItems" style="display: none;"> <!-- Hidden by default -->
+          <!-- First drink item -->
+          <div class="menu-item" data-description="Rich, creamy chocolate milkshake.">
+            <img src="milkshake.jpg" alt="Drink 1">
+            <div class="description">Creamy Milkshake</div>
+          </div>
+          <!-- Second drink item -->
+          <div class="menu-item" data-description="Refreshing root beer.">
+            <img src="rootbeer.jpg" alt="Drink 2">
+            <div class="description">Root Beer</div>
+          </div>
+          <!-- Third drink item -->
+          <div class="menu-item" data-description="Classic carbonated drinks of your choice.">
+            <img src="carbonated.jpg" alt="Drink 3">
+            <div class="description">Carbonated drinks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <section>
+      <h4>About Us</h4>
+      <ul>
+        <li><a href="index.html">Menu</a></li> 
+        <li><a href="Location.html">Locations</a></li> 
+        <li><a href="Story.html">Our Story</a></li> 
+        <li><a href="ContactUs.html">Contact Us</a></li> 
+      </ul>
+    </section>
+    <section>
+      <h4>Download Our App</h4>
+      <ul>
+        <li><a href="#"><img src="googleplaystore.png" alt="Google Play Icon"></a></li>
+        <li><a href="#"><img src="appstore.png" alt="App Store Icon"></a></li>
+      </ul>
+    </section>
+    <section>
+      <h4>Social</h4>
+      <ul>
+        <li><a href="#"><img src="Instagram.png" alt="Instagram Icon"></a></li>
+        <li><a href="#"><img src="Facebook.png" alt="Facebook Icon"></a></li>
+      </ul>
+    </section>
+  </footer>
+
+  <!-- JavaScript for Toggle Functionality -->
+  <script>
+    // Get references to the burger and drink tabs
+    const burgerTab = document.getElementById('burgerTab');
+    const drinkTab = document.getElementById('drinkTab');
+
+    // Get references to the burger and drink items containers
+    const burgerItems = document.getElementById('burgerItems');
+    const drinkItems = document.getElementById('drinkItems');
+
+    // Get reference to the current menu title
+    const currentMenuTitle = document.getElementById('currentMenuTitle');
+
+    // Show burger items and hide drink items when burger tab is clicked
+    burgerTab.addEventListener('click', () => {
+      burgerItems.style.display = 'flex';
+      drinkItems.style.display = 'none';
+      currentMenuTitle.textContent = 'Burgers';
+      burgerTab.classList.add('active');
+      drinkTab.classList.remove('active'); /* remove displayed drinks when clicked a*/
+    });
+
+    // Show drink items and hide burger items when drink tab is clicked
+    drinkTab.addEventListener('click', () => {
+      drinkItems.style.display = 'flex';
+      burgerItems.style.display = 'none';
+      currentMenuTitle.textContent = 'Drinks';
+      drinkTab.classList.add('active');
+      burgerTab.classList.remove('active');
+    });
+
+    // when mouse over it shows item descriptions as pop-ups
+    const menuItems = document.querySelectorAll('.menu-item');
+    const popup = document.createElement('div'); // Create pop-up div
+    popup.classList.add('popup');
+    document.body.appendChild(popup);
+
+    menuItems.forEach(item => {
+      item.addEventListener('mouseover', (e) => {
+        const description = item.getAttribute('data-description'); // Get item description
+        popup.textContent = description;
+        popup.style.left = `${e.pageX + 10}px`; // Position pop-up near cursor
+        popup.style.top = `${e.pageY + 10}px`;
+        popup.style.visibility = 'visible'; // Make pop-up visible
+        popup.style.opacity = '1';
+      });
+
+      item.addEventListener('mouseout', () => {
+        popup.style.visibility = 'hidden'; // Hide pop-up on mouse out
+        popup.style.opacity = '0';
+      });
+    });
+  </script>
+</body>
+</html>

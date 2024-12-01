@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Contact Us | The Jade Stack</title>
+  <link rel="stylesheet" href="Main.css"> 
+</head>
+<body class="menu-page">
+
+  <!-- Header Section -->
+  <header>
+    <!-- Logo of the restaurant -->
+    <div class="logo">
+      <img src="jadestack_icon.jpg" alt="The Jade Stack Logo"> 
+    </div>
+    <!-- Navigation menu -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Menu</a></li> 
+        <li><a href="Location.html">Locations</a></li> 
+        <li><a href="Story.html">Our Story</a></li> 
+        <li><a href="ContactUs.html">Contact Us</a></li> 
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contact Us Header -->
+  <div class="menu-header">
+    <h2>Contact Us</h2> <!-- Section header for Contact Us -->
+  </div>
+
+  <!-- Contact Form Section -->
+  <main>
+    <section class="contact-form">
+      <h3>We'd love to hear from you!</h3> 
+      <form id="feedbackForm"> <!-- Form for user feedback -->
+        <!-- Input field for user's name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+        <!-- Input field for user's phone number -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+        <!-- Input field for user's email address -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+        <!-- Textarea for user's feedback message -->
+        <label for="message">Feedback:</label>
+        <textarea id="message" name="message" placeholder="Your Feedback" rows="5" required></textarea>
+
+        <!-- Submit button -->
+        <button type="submit" id="submitButton">Submit</button>
+      </form>
+      <!-- Message area for form submission responses -->
+      <div id="responseMessage"></div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <!-- About Us links -->
+    <section>
+      <h4>About Us</h4>
+      <ul>
+        <li><a href="index.html">Menu</a></li> 
+        <li><a href="Location.html">Locations</a></li> 
+        <li><a href="Story.html">Our Story</a></li> 
+        <li><a href="ContactUs.html">Contact Us</a></li> 
+      </ul>
+    </section>
+    <!-- Links to download the restaurant's app -->
+    <section>
+      <h4>Download Our App</h4>
+      <ul>
+        <li><a href="#"><img src="googleplaystore.png" alt="Google Play Icon"></a></li>
+        <li><a href="#"><img src="appstore.png" alt="App Store Icon"></a></li>
+      </ul>
+    </section>
+    <!-- Links to social media profiles -->
+    <section>
+      <h4>Social</h4>
+      <ul>
+        <li><a href="#"><img src="Instagram.png" alt="Instagram Icon"></a></li>
+        <li><a href="#"><img src="Facebook.png" alt="Facebook Icon"></a></li>
+      </ul>
+    </section>
+  </footer>
+
+  <!-- JavaScript for Form Validation and Submission -->
+  <script>
+    // Select the feedback form element by its ID
+    const form = document.getElementById('feedbackForm');
+
+    // Select the response message container where feedback messages will be displayed
+    const responseMessage = document.getElementById('responseMessage');
+
+    // Add an event listener to the form that listens for the 'submit' event
+    form.addEventListener('submit', function (e) {
+        // Prevent the default form submission behavior, which reloads the page
+        e.preventDefault();
+
+        // Retrieve and trim user input values from the form fields
+        const name = document.getElementById('name').value.trim(); // Get the value of the name field
+        const phone = document.getElementById('phone').value.trim(); // Get the value of the phone field
+        const email = document.getElementById('email').value.trim(); // Get the value of the email field
+        const message = document.getElementById('message').value.trim(); // Get the value of the message field
+
+        // Check if any of the form fields are empty
+        if (!name || !phone || !email || !message) {
+            // If any field is empty, display an error message in the response container
+            responseMessage.textContent = 'Please fill in all fields.';
+            responseMessage.style.color = 'red'; // Set the text color to red for an error indication
+            return; // Exit the function without proceeding further
+        }
+
+        // If all fields are filled, display a success message
+        responseMessage.textContent = 'Thank you for your feedback!'; // Display success text
+        responseMessage.style.color = 'green'; // Set the text color to green to indicate success
+
+        // Reset the form fields to be empty after successful submission
+        form.reset(); // Clears all the input values in the form
+    });
+  </script>
+
+</body>
+</html>
